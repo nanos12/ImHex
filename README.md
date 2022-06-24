@@ -1,10 +1,11 @@
-<h1 align="center">:mag: ImHex</h1>
+<a href="https://imhex.werwolv.net"><h1 align="center" >:mag: ImHex</h1></a>
 
-<p align="center">A Hex Editor for Reverse Engineers, Programmers and people that value their eye sight when working at 3 AM.</p>
+<p align="center">A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.</p>
 
 <p align="center">
   <a title="'Build' workflow Status" href="https://github.com/WerWolv/ImHex/actions?query=workflow%3ABuild"><img alt="'Build' workflow Status" src="https://img.shields.io/github/workflow/status/WerWolv/ImHex/Build?longCache=true&style=for-the-badge&label=Build&logoColor=fff&logo=GitHub%20Actions"></a>
-   <a title="Discord Server" href="https://discord.gg/X63jZ36xBY"><img alt="Discord Server" src="https://img.shields.io/discord/789833418631675954?label=Discord&logo=Discord&style=for-the-badge"></a>
+  <a title="Discord Server" href="https://discord.gg/X63jZ36xBY"><img alt="Discord Server" src="https://img.shields.io/discord/789833418631675954?label=Discord&logo=Discord&style=for-the-badge"></a>
+  <a title="Total Downloads" href="https://github.com/WerWolv/ImHex/releases/latest"><img alt="Total Downloads" src="https://img.shields.io/github/downloads/WerWolv/ImHex/total?longCache=true&style=for-the-badge&label=Downloads&logoColor=fff&logo=GitHub"></a>
 </p>
 
 ## Supporting
@@ -17,6 +18,11 @@ If you like my work, please consider supporting me on GitHub Sponsors, Patreon o
 <a href="https://werwolv.net/donate"><img src="https://werwolv.net/assets/paypal_banner.png" alt="PayPal donate button" /> </a>
 </p>
 
+## Screenshots
+
+![Hex editor, patterns and data information](https://user-images.githubusercontent.com/10835354/139717326-8044769d-527b-4d88-8adf-2d4ecafdca1f.png)
+![Bookmarks, disassembler and data processor](https://user-images.githubusercontent.com/10835354/139717323-1f8c9d52-f7eb-4f43-9f11-097ac728ed6c.png)
+
 ## Features
 
 - Featureful hex view
@@ -27,13 +33,13 @@ If you like my work, please consider supporting me on GitHub Sponsors, Patreon o
     - Hex string
     - C, C++, C#, Rust, Python, Java & JavaScript array
     - ASCII-Art hex view
-    - HTML self contained div
+    - HTML self-contained div
   - String and hex search
   - Colorful highlighting
   - Goto from start, end and current cursor position
 - Custom C++-like pattern language for parsing highlighting a file's content
   - Automatic loading based on MIME type
-  - arrays, pointers, structs, unions, enums, bitfields, using declarations, little and big endian support, conditionals and much more!
+  - arrays, pointers, structs, unions, enums, bitfields, namespaces, little and big endian support, conditionals and much more!
   - Useful error messages, syntax highlighting and error marking
 - Data importing
   - Base64 files
@@ -49,7 +55,7 @@ If you like my work, please consider supporting me on GitHub Sponsors, Patreon o
   - CRC16 and CRC32 with custom initial values and polynomials
   - MD4, MD5
   - SHA-1, SHA-224, SHA-256, SHA-384, SHA-512
-- Disassembler supporting many different architectures
+- Disassembler supporting many architectures (frontend for Capstone)
   - ARM32 (ARM, Thumb, Cortex-M, AArch32)
   - ARM64
   - MIPS (MIPS32, MIPS64, MIPS32R6, Micro)
@@ -62,6 +68,10 @@ If you like my work, please consider supporting me on GitHub Sponsors, Patreon o
   - TMS320C64X
   - M680X
   - Ethereum
+  - RISC-V
+  - WebAssembly
+  - MOS565XX
+  - Berkeley Packet Filter
 - Bookmarks
   - Region highlighting
   - Comments
@@ -71,56 +81,69 @@ If you like my work, please consider supporting me on GitHub Sponsors, Patreon o
   - Entropy graph
   - Highest and average entropy
   - Encrypted / Compressed file detection
+- Built-in Content Store
+  - Download all files found in the database directly from within ImHex
+- Yara Rules support
+  - Quickly scan a file for vulnerabilities with official yara rules
 - Helpful tools
   - Itanium and MSVC demangler
   - ASCII table
   - Regex replacer
   - Mathematical expression evaluator (Calculator)
   - Hexadecimal Color picker
+  - Base converter
+  - UNIX Permissions calculator
+  - Anonfiles File upload tool
+  - Wikipedia term definition finder
+  - File utilities
+    - File splitter
+    - File combiner
+    - File shredder
 - Built-in cheat sheet for pattern language and Math evaluator
 - Doesn't burn out your retinas when used in late-night sessions
 
-## Screenshots
-
-![](https://i.imgur.com/xH7xJ4g.png)
-![](https://i.imgur.com/fhVJYEa.png)
-
 ## Pattern Language
 
-The custom C-like Pattern Language developed and used by ImHex is easy to read, understand and learn. A guide with all features of the language can be found [in the wiki](https://github.com/WerWolv/ImHex/wiki/Pattern-Language-Guide) or a simpler version in ImHex under `Help -> Pattern Language Cheat Sheet`
+The custom C-like Pattern Language developed and used by ImHex is easy to read, understand and learn. A guide with all features of the language can be found [on the docs page](http://imhex.werwolv.net/docs).
 
-## Additional Files
+## Database
 
-For format patterns, includable libraries and magic files, check out the [ImHex-Patterns](https://github.com/WerWolv/ImHex-Patterns) repository. Feel free to PR your own files there as well!
+For format patterns, includable libraries magic and constant files, check out the [ImHex-Patterns](https://github.com/WerWolv/ImHex-Patterns) repository. Feel free to PR your own files there as well!
+
+## Plugin development
+
+To develop plugins for ImHex, use one of the following two templates projects to get started. You then have access to the entirety of libimhex as well as the ImHex API and the Content Registry to interact with ImHex or to add new content.
+- [C++ Plugin Template](https://github.com/WerWolv/ImHex-Cpp-Plugin-Template)
+- [Rust Plugin Template](https://github.com/WerWolv/ImHex-Rust-Plugin-Template)
+
 
 ## Nightly builds
 
 Nightlies are available via GitHub Actions [here](https://github.com/WerWolv/ImHex/actions?query=workflow%3ABuild).
 
 - Windows • __x86_64__
-  - [MSI Installer](https://nightly.link/WerWolv/ImHex/workflows/build/master/Windows%20Installer.zip)
-  - [Portable ZIP](https://nightly.link/WerWolv/ImHex/workflows/build/master/Windows%20Portable%20ZIP.zip)
+  - [MSI](https://nightly.link/WerWolv/ImHex/workflows/build/master/Windows%20Installer.zip)
+  - [EXE](https://nightly.link/WerWolv/ImHex/workflows/build/master/Windows%20Portable%20ZIP.zip)
 - MacOS • __x86_64__
   - [DMG](https://nightly.link/WerWolv/ImHex/workflows/build/master/macOS%20DMG.zip)
 - Linux • __x86_64__
   - [ELF](https://nightly.link/WerWolv/ImHex/workflows/build/master/Linux%20ELF.zip)
+  - [DEB](https://nightly.link/WerWolv/ImHex/workflows/build/master/Linux%20DEB.zip)
+  - [Flatpak](https://nightly.link/WerWolv/ImHex/workflows/build/master/Linux%20Flatpak.zip)
+  - [AppImage](https://nightly.link/WerWolv/ImHex/workflows/build/master/Linux%20AppImage.zip)
 
 ## Compiling
 
-You need a C++20 compatible compiler such as GCC 10.2.0 to compile ImHex. Moreover, the following dependencies are needed for compiling ImHex:
+You need a C++20 compatible compiler such as GCC 10.2.0 to compile ImHex.
 
-- GLFW3
-- libmagic, libgnurx, libtre, libintl, libiconv
-- libmbedtls
-- capstone
-- Python3
-- freetype2
-- Brew (macOS only)
-- Xcode (macOS only)
+Many dependencies are bundled into the repository using submodules so make sure to clone it using the `--recurse-submodules` option.
+All dependencies that aren't bundled, can be installed using the dependency installer scripts found in the `/dist` folder.
+
+For working examples 
 
 ### Windows
 
-On Windows, ImHex is built through msys2 / mingw. To install all dependencies, open a mys2 window and run the PKGCONFIG script in the (dist/msys2)[dist/msys2] folder.
+On Windows, ImHex is built through msys2 / mingw. To install all dependencies, open a mys2 window and run the PKGCONFIG script in the [dist/msys2](dist/msys2) folder.
 After all the dependencies are installed, run the following commands to build ImHex:
 
 ```sh
@@ -134,7 +157,7 @@ make -j
 
 To create a standalone zipfile on Windows, get the Python standard library (e.g. from https://github.com/python/cpython/tree/master/Lib) and place the files and folders in `lib/python3.8` next to your built executable. Don't forget to also copy the `libpython3.8.dll` and `libwinpthread-1.dll` from your mingw setup next to the executable.
 
-- Copy the files from `python_libs` in the `lib` folder next to your built executable.
+- Copy the files inside the `/resources/lib/python` folder into the `lib` folder next to your built executable.
 - Place your magic databases in the `magic` folder next to your built executable
 - Place your patterns in the `pattern` folder next to your built executable
 - Place your include pattern files in the `include` folder next to your built executable
@@ -164,9 +187,13 @@ Configuration: ~/Library/Application Support/imhex/config
 Resources: ~/Library/Application Support/imhex/resources
 ```
 
+If the build fails while trying to find the macOS libraries, make sure you have
+XCode installed with `xcode-select --install`. Homebrew will also help get the
+most recent SDK installed and configured with `brew doctor`.
+
 ### Linux
 
-Dependency installation scripts are available for many common Linux distributions in the (/dist)[dist] folder.
+Dependency installation scripts are available for many common Linux distributions in the [/dist](dist) folder.
 After all the dependencies are installed, run the following commands to build ImHex:
 
 ```sh
@@ -199,9 +226,19 @@ with the environment variables `XDG_CONFIG_HOME`, `XDG_CONFIG_DIRS`,
 
 ## Credits
 
+### Contributors
+
+- [Mary](https://github.com/Thog) for her immense help porting ImHex to MacOS and help during development
+- [Roblabla](https://github.com/Roblabla) for adding MSI Installer support to ImHex
+- [jam1garner](https://github.com/jam1garner) and [raytwo](https://github.com/raytwo) for their help with adding Rust support to plugins
+- Everybody else who has reported issues on Discord or GitHub that I had great conversations with :)
+
+### Libraries
+
 - Thanks a lot to ocornut for their amazing [Dear ImGui](https://github.com/ocornut/imgui) which is used for building the entire interface
-  - Thanks to orconut as well for their hex editor view used as base for this project.
+  - Thanks to ocornut as well for their hex editor view used as base for this project.
   - Thanks to BalazsJako for their incredible [ImGuiColorTextEdit](https://github.com/BalazsJako/ImGuiColorTextEdit) used for the pattern language syntax highlighting
-  - Thanks to AirGuanZ for their amazing [imgui-filebrowser](https://github.com/AirGuanZ/imgui-filebrowser) used for loading and saving files
 - Thanks to nlohmann for their [json](https://github.com/nlohmann/json) library used for project files
 - Thanks to aquynh for [capstone](https://github.com/aquynh/capstone) which is the base of the disassembly window
+- Thanks to vitaut for their [libfmt](https://github.com/fmtlib/fmt) library which makes formatting and logging so much better
+- Thanks to rxi for [microtar](https://github.com/rxi/microtar) used for extracting downloaded store assets 

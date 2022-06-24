@@ -1,13 +1,16 @@
 .vscode/
 .idea/
 
-cmake-build-debug/
-
-cmake-build-release/
+cmake-build-*/
 
 build-linux/
-build/
+build*/
 
 *.mgc
 imgui.ini
 .DS_Store
+plugins/.rustc_info.json
+
+**/target
+
+plugins/example_rust/Cargo.lock

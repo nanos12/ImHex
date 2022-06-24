@@ -26,9 +26,7 @@ RDEPEND="${DEPEND}
 		media-libs/glfw
 		sys-apps/file
 		dev-libs/mbedtls
-		dev-libs/capstone
 		dev-cpp/nlohmann_json
-		media-libs/glm
 		x11-libs/gtk+
 		"
 BDEPEND="${DEPEND}"

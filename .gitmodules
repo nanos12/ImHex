@@ -1,13 +1,31 @@
-[submodule "external/nativefiledialog"]
-	path = external/nativefiledialog
+[submodule "lib/external/nativefiledialog"]
+	path = lib/external/nativefiledialog
 	url = https://github.com/btzy/nativefiledialog-extended
-[submodule "external/yara/yara"]
-	path = external/yara/yara
+	ignore = dirty
+[submodule "lib/external/yara/yara"]
+	path = lib/external/yara/yara
 	url = https://github.com/VirusTotal/yara
 	ignore = dirty
-[submodule "external/xdgpp"]
-	path = external/xdgpp
+[submodule "lib/external/xdgpp"]
+	path = lib/external/xdgpp
 	url = https://git.sr.ht/~danyspin97/xdgpp
-[submodule "external/fmt"]
-	path = external/fmt
+	ignore = dirty
+[submodule "lib/external/fmt"]
+	path = lib/external/fmt
 	url = https://github.com/fmtlib/fmt
+	ignore = dirty
+[submodule "lib/external/curl"]
+	path = lib/external/curl
+	url = https://github.com/curl/curl
+	ignore = dirty
+[submodule "lib/external/capstone"]
+	path = lib/external/capstone
+	url = https://github.com/capstone-engine/capstone
+	ignore = dirty
+[submodule "lib/external/libromfs"]
+	path = lib/external/libromfs
+	url = https://github.com/WerWolv/libromfs
+	ignore = dirty
+[submodule "lib/external/pattern_language"]
+	path = lib/external/pattern_language
+	url = https://github.com/WerWolv/PatternLanguage

@@ -1,83 +1,38 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Updating the version here will update it throughout ImHex as well
-project(imhex VERSION 1.7.0)
+set(IMHEX_VERSION "1.18.2")
+project(imhex VERSION ${IMHEX_VERSION})
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
-include("${CMAKE_SOURCE_DIR}/cmake/build_helpers.cmake")
+set(IMHEX_BASE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_MODULE_PATH "${IMHEX_BASE_FOLDER}/cmake/modules")
+include("${IMHEX_BASE_FOLDER}/cmake/build_helpers.cmake")
+
+# Make sure project is configured correctly
 setDefaultBuiltTypeIfUnset()
+detectBadClone()
 
 # List plugin names here. Project name must match folder name
 set(PLUGINS
-        builtin
-        # example
-        )
+    builtin
+    windows
+)
 
-# List extra magic databases to compile here
-set(MAGICDBS
-        magic_dbs/nintendo_magic
-        )
-
-findLibraries()
-
+# Add various defines
 detectOS()
 detectArch()
-
-# Add bundled dependencies
-add_subdirectory(external/llvm)
-add_subdirectory(external/yara)
-add_subdirectory(plugins/libimhex)
-
-# Add include directories
-include_directories(include ${MBEDTLS_INCLUDE_DIRS} ${CAPSTONE_INCLUDE_DIRS} ${MAGIC_INCLUDE_DIRS} ${Python_INCLUDE_DIRS})
-
 addVersionDefines()
-configurePackageCreation()
+configurePackingResources()
 
-add_executable(imhex ${application_type}
-        source/main.cpp
-        source/window.cpp
+# Add ImHex sources
+add_subdirectory(lib/libimhex)
+add_subdirectory(main)
+add_custom_target(imhex_all ALL DEPENDS main)
 
-        source/helpers/patches.cpp
-        source/helpers/project_file_handler.cpp
-        source/helpers/loader_script_handler.cpp
-        source/helpers/plugin_handler.cpp
-        source/helpers/encoding_file.cpp
+# Add unit tests
+enable_testing()
+add_subdirectory(tests EXCLUDE_FROM_ALL)
 
-        source/providers/file_provider.cpp
-
-        source/views/view_hexeditor.cpp
-        source/views/view_pattern.cpp
-        source/views/view_pattern_data.cpp
-        source/views/view_hashes.cpp
-        source/views/view_information.cpp
-        source/views/view_help.cpp
-        source/views/view_tools.cpp
-        source/views/view_strings.cpp
-        source/views/view_data_inspector.cpp
-        source/views/view_disassembler.cpp
-        source/views/view_bookmarks.cpp
-        source/views/view_patches.cpp
-        source/views/view_command_palette.cpp
-        source/views/view_settings.cpp
-        source/views/view_data_processor.cpp
-        source/views/view_yara.cpp
-
-        ${imhex_icon}
-        )
-
-set_target_properties(imhex PROPERTIES CXX_VISIBILITY_PRESET hidden)
-target_link_directories(imhex PRIVATE ${CAPSTONE_LIBRARY_DIRS} ${MAGIC_LIBRARY_DIRS})
-
-if (WIN32)
-    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        target_link_libraries(imhex magic gnurx tre intl iconv libshlwapi.a ${CMAKE_DL_LIBS} capstone LLVMDemangle libimhex ${Python_LIBRARIES} dl pthread wsock32 ws2_32 libyara)
-    else ()
-        target_link_libraries(imhex libdl.a libmagic.a libgnurx.a libtre.a libintl.a libiconv.a libshlwapi.a libcapstone.a LLVMDemangle libimhex ${Python_LIBRARIES} wsock32 ws2_32 libyara)
-    endif()
-else ()
-    target_link_libraries(imhex magic ${CMAKE_DL_LIBS} capstone LLVMDemangle libimhex ${Python_LIBRARIES} dl pthread libyara)
-endif ()
-
+# Configure packaging
 createPackage()

@@ -13,9 +13,9 @@
 if(CMAKE_GENERATOR)
 	# Being called as include(PostprocessBundle), so define a helper function.
 	set(_POSTPROCESS_BUNDLE_MODULE_LOCATION "${CMAKE_CURRENT_LIST_FILE}")
-	function(postprocess_bundle target)
-		add_custom_command(TARGET ${target} POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -DBUNDLE_PATH="$<TARGET_FILE_DIR:${target}>/../.." -DCODE_SIGN_CERTIFICATE_ID="${CODE_SIGN_CERTIFICATE_ID}"
+	function(postprocess_bundle out_target in_target)
+		add_custom_command(TARGET ${out_target} POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -DBUNDLE_PATH="$<TARGET_FILE_DIR:${in_target}>/../.." -DCODE_SIGN_CERTIFICATE_ID="${CODE_SIGN_CERTIFICATE_ID}"
 				-P "${_POSTPROCESS_BUNDLE_MODULE_LOCATION}"
 		)
 	endfunction()
@@ -26,9 +26,8 @@ get_filename_component(BUNDLE_PATH "${BUNDLE_PATH}" ABSOLUTE)
 message(STATUS "Fixing up application bundle: ${BUNDLE_PATH}")
 
 
-# Make sure to fix up any additional shared libraries (like plugins) that are
-# needed.
-file(GLOB_RECURSE extra_libs "${BUNDLE_PATH}/Contents/MacOS/*.dylib")
+# Make sure to fix up any included ImHex plugin.
+file(GLOB_RECURSE extra_libs "${BUNDLE_PATH}/Contents/MacOS/plugins/*.hexplug")
 
 message(STATUS "Fixing up application bundle: ${extra_dirs}")
 
@@ -57,3 +56,6 @@ if (CODE_SIGN_CERTIFICATE_ID)
 	execute_process(COMMAND ${CMAKE_COMMAND} -E remove_directory "${BUNDLE_PATH}")
 	execute_process(COMMAND ${CMAKE_COMMAND} -E rename "${BUNDLE_PATH}.temp" "${BUNDLE_PATH}")
 endif()
+
+# Add a necessary rpath to the imhex binary
+get_bundle_main_executable("${BUNDLE_PATH}" IMHEX_EXECUTABLE)
